@@ -1,0 +1,326 @@
+/* AnalysisDashboard.css (Final Version with All Revisions) */
+
+/* ============================================= */
+/* 1. ROOT & THEME VARIABLES                     */
+/* ============================================= */
+:root {
+  --primary: #015A95;
+  --primary-light: #0070C0;
+  --primary-bright: #0080C0;
+  --primary-dark: #004060;
+  --secondary: #5DADE2;
+  --accent: #128a9f;
+  --success: #10B981;
+  --warning: #F59E0B;
+  --danger: #EF4444;
+  --dark: #1A1A2E;
+  --light: #F8FBFF;
+  --white: #FFFFFF;
+  --gray-light: #ECF0F1;
+  --gray-medium: #BDC3C7;
+  --gray-dark: #7F8C8D;
+  --gradient-primary: linear-gradient(135deg, #015A95 0%, #0070C0 50%, #0080C0 100%);
+  --gradient-hover: linear-gradient(135deg, #004060 0%, #015A95 50%, #0070C0 100%);
+  --gradient-light: linear-gradient(135deg, rgba(1, 90, 149, 0.1) 0%, rgba(0, 112, 192, 0.05) 100%);
+  --shadow-light: 0 4px 20px rgba(1, 90, 149, 0.1);
+  --shadow-medium: 0 8px 30px rgba(1, 90, 149, 0.15);
+  --border-radius-sm: 8px;
+  --border-radius: 16px;
+  --border-radius-lg: 24px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================= */
+/* 2. BASE & LAYOUT STYLES                       */
+/* ============================================= */
+.hwa-dashboard-container {
+  background: linear-gradient(165deg, #F8FBFF 0%, #E3F2FD 50%, #D6EAF8 100%);
+  min-height: 100vh;
+  padding: 40px 20px;
+  color: var(--dark);
+}
+
+.hwa-dashboard-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.hwa-dashboard-title {
+  font-size: 3rem;
+  font-weight: 800;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 10px;
+}
+
+.hwa-dashboard-subtitle {
+  font-size: 1.2rem;
+  color: var(--gray-dark);
+  max-width: 600px;
+  margin: 0 auto 20px;
+}
+
+/* --- CORE LAYOUT LOGIC --- */
+.hwa-main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+/* This rule makes the original wrapper divs "disappear" from the layout,
+   allowing us to reorder their children sequentially. */
+.hwa-input-section,
+.hwa-results-section {
+  display: contents;
+}
+
+/* REVISED: Increased width for all components */
+.hwa-main-content > * {
+  width: 100%;
+  max-width: 1400px; /* Increased from 1100px */
+}
+
+/* ============================================= */
+/* 3. GENERAL CARD & COMPONENT STYLES            */
+/* ============================================= */
+.hwa-upload-card,
+.hwa-questionnaire-card,
+.hwa-weight-slider-card,
+.hwa-chart-card,
+.hwa-client-management-card,
+.hwa-select-client-prompt,
+.hwa-questionnaire-pending,
+.hwa-questionnaire-completed {
+  background: var(--white);
+  border-radius: var(--border-radius-lg);
+  padding: 30px;
+  box-shadow: var(--shadow-light);
+  border: 1px solid rgba(1, 90, 149, 0.1);
+  transition: var(--transition);
+}
+
+.hwa-upload-card:hover,
+.hwa-questionnaire-card:hover,
+.hwa-weight-slider-card:hover,
+.hwa-chart-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-medium);
+}
+
+.hwa-card-header, .hwa-upload-header, .hwa-questionnaire-header, .hwa-slider-header, .hwa-client-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  color: var(--primary-dark);
+  border-bottom: 1px solid var(--gray-light);
+  padding-bottom: 15px;
+}
+
+.hwa-card-header h3, .hwa-upload-header h3, .hwa-questionnaire-header h3, .hwa-slider-header h3, .hwa-client-header h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.hwa-card-icon, .hwa-upload-icon, .hwa-questionnaire-icon, .hwa-slider-icon {
+  color: var(--primary);
+  width: 32px;
+  height: 32px;
+}
+
+.hwa-upload-button, .hwa-submit-button, .hwa-download-pdf-btn, .hwa-select-client-button, .hwa-add-client-button, .hwa-update-client-button, .hwa-cancel-edit-button, .hwa-questionnaire-pending button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 14px 28px;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: var(--transition);
+  cursor: pointer;
+  border: none;
+  font-size: 1rem;
+  background: var(--gradient-primary);
+  color: white;
+  box-shadow: var(--shadow-light);
+}
+
+.hwa-upload-button:hover, .hwa-submit-button:hover, .hwa-download-pdf-btn:hover, .hwa-select-client-button:hover, .hwa-add-client-button:hover, .hwa-update-client-button:hover, .hwa-questionnaire-pending button:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-medium);
+  background: var(--gradient-hover);
+}
+
+.hwa-upload-button:disabled, .hwa-submit-button:disabled {
+  background: var(--gray-medium);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ============================================= */
+/* 4. PROGRESS INDICATOR                         */
+/* ============================================= */
+.hwa-progress-indicator { display: flex; justify-content: center; align-items: center; margin-bottom: 40px; gap: 10px; flex-wrap: wrap; }
+.hwa-progress-step { display: flex; align-items: center; gap: 8px; padding: 10px 20px; background: var(--white); border: 1px solid var(--gray-light); border-radius: 50px; color: var(--gray-dark); transition: var(--transition); font-weight: 500; }
+.hwa-progress-step.hwa-active { color: var(--primary-dark); font-weight: 600; }
+.hwa-progress-step.hwa-active .hwa-button-icon { color: var(--primary); }
+.hwa-progress-step.hwa-completed { background: var(--gradient-light); border-color: rgba(1, 90, 149, 0.2); color: var(--primary-dark); }
+.hwa-progress-step.hwa-completed::after { content: '✓'; color: var(--success); font-weight: bold; margin-left: 8px; }
+
+/* ============================================= */
+/* 5. FILE UPLOAD COMPONENT                      */
+/* ============================================= */
+.hwa-upload-header { flex-direction: column; text-align: center; border-bottom: none; padding-bottom: 0; }
+.hwa-upload-header .hwa-upload-icon { width: 48px; height: 48px; margin-bottom: 5px; }
+.hwa-upload-header p { margin: 0; font-size: 0.9rem; color: var(--gray-dark); }
+.hwa-drop-zone { border: 2px dashed var(--gray-medium); border-radius: var(--border-radius); padding: 30px; text-align: center; cursor: pointer; transition: var(--transition); margin-bottom: 20px; }
+.hwa-drop-zone:hover, .hwa-drop-zone.hwa-drag-active { border-color: var(--primary); background: var(--gradient-light); }
+.hwa-drop-icon { width: 40px; height: 40px; color: var(--primary); margin: 0 auto 10px; }
+.hwa-drop-zone-content p { font-weight: 600; margin-bottom: 5px; }
+.hwa-drop-zone-content span { font-size: 0.85rem; color: var(--gray-dark); }
+.hwa-file-preview { display: flex; align-items: center; gap: 15px; text-align: left; }
+.hwa-file-icon { width: 32px; height: 32px; color: var(--primary); }
+.hwa-file-name { font-weight: 600; margin: 0; word-break: break-all; }
+.hwa-file-details { font-size: 0.85rem; color: var(--gray-dark); margin: 0; }
+.hwa-spinner { width: 18px; height: 18px; border: 2px solid rgba(255, 255, 255, 0.3); border-top-color: var(--white); border-radius: 50%; animation: spin 1s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ============================================= */
+/* 6. QUESTIONNAIRE & WEIGHT SLIDER              */
+/* ============================================= */
+.hwa-questionnaire-header { flex-direction: column; text-align: center; border-bottom: none; padding-bottom: 0; }
+.hwa-questionnaire-header p { margin: 0; font-size: 0.9rem; color: var(--gray-dark); }
+.hwa-score-input-group { margin-bottom: 25px; }
+.hwa-score-label { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; font-weight: 600; }
+.hwa-score-icon { color: var(--primary); }
+.hwa-input-container { position: relative; }
+.hwa-score-input { width: 100%; padding: 12px 40px 12px 15px; border: 1px solid var(--gray-medium); border-radius: var(--border-radius-sm); font-size: 1rem; transition: var(--transition); }
+.hwa-score-input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(1, 90, 149, 0.1); }
+.hwa-input-suffix { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: var(--gray-dark); }
+.hwa-progress-bar { height: 8px; background: var(--gray-light); border-radius: 50px; margin-top: 10px; overflow: hidden; }
+.hwa-progress-fill { height: 100%; background: var(--gradient-primary); border-radius: 50px; transition: width 0.5s ease; }
+.hwa-weight-display { display: flex; justify-content: space-between; margin-bottom: 20px; padding: 15px; background: var(--gradient-light); border-radius: var(--border-radius); }
+.hwa-weight-item { text-align: center; }
+.hwa-weight-label { display: block; font-size: 0.9rem; color: var(--gray-dark); }
+.hwa-weight-value { font-size: 1.5rem; font-weight: 700; }
+.hwa-script-weight .hwa-weight-value { color: #6366F1; }
+.hwa-questionnaire-weight .hwa-weight-value { color: #F56565; }
+.hwa-weight-slider { -webkit-appearance: none; appearance: none; width: 100%; height: 8px; background: var(--gray-light); outline: none; border-radius: 50px; margin: 15px 0; }
+.hwa-weight-slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 24px; height: 24px; background: var(--primary); cursor: pointer; border-radius: 50%; border: 4px solid var(--white); box-shadow: var(--shadow-medium); transition: var(--transition); }
+.hwa-weight-slider::-moz-range-thumb { width: 24px; height: 24px; background: var(--primary); cursor: pointer; border-radius: 50%; border: 4px solid var(--white); box-shadow: var(--shadow-medium); }
+.hwa-weight-slider:hover::-webkit-slider-thumb { transform: scale(1.1); }
+.hwa-slider-labels { display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--gray-dark); }
+
+/* ============================================= */
+/* 7. CLIENT MANAGEMENT MODAL (UNCHANGED)        */
+/* ============================================= */
+.hwa-client-management-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(26, 26, 46, 0.7); backdrop-filter: blur(10px); display: flex; align-items: center; justify-content: center; z-index: 1000; }
+.hwa-modal-content { position: relative; width: 90%; max-width: 600px; }
+.hwa-close-modal { position: absolute; top: -15px; right: -15px; width: 40px; height: 40px; border-radius: 50%; background: var(--white); border: none; font-size: 1.5rem; cursor: pointer; box-shadow: var(--shadow-medium); display: flex; align-items: center; justify-content: center; color: var(--dark); transition: var(--transition); }
+.hwa-close-modal:hover { transform: scale(1.1) rotate(90deg); background: var(--danger); color: white; }
+.hwa-form-group { margin-bottom: 15px; }
+.hwa-form-group label { display: block; margin-bottom: 5px; font-weight: 600; }
+.hwa-form-group input { width: 100%; padding: 12px 15px; border: 1px solid var(--gray-medium); border-radius: var(--border-radius-sm); font-size: 1rem; }
+.hwa-form-group input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(1, 90, 149, 0.1); }
+.hwa-client-form { margin-bottom: 30px; }
+.hwa-edit-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.hwa-client-list ul { list-style: none; padding: 0; margin: 0; max-height: 300px; overflow-y: auto; }
+.hwa-client-list li { display: flex; justify-content: space-between; align-items: center; padding: 15px; border-bottom: 1px solid var(--gray-light); transition: var(--transition); }
+.hwa-client-list li:hover { background-color: var(--gradient-light); }
+.hwa-client-info { cursor: pointer; flex-grow: 1; }
+.hwa-client-name { font-weight: 600; display: block; }
+.hwa-client-email { font-size: 0.9rem; color: var(--gray-dark); }
+.hwa-client-actions { display: flex; align-items: center; gap: 10px; }
+.hwa-edit-button, .hwa-delete-button { padding: 6px 12px; font-size: 0.8rem; border: 1px solid var(--gray-medium); background: transparent; color: var(--gray-dark); border-radius: var(--border-radius-sm); cursor: pointer; transition: var(--transition); }
+.hwa-edit-button:hover { background-color: var(--primary); color: white; border-color: var(--primary); }
+.hwa-delete-button:hover { background-color: var(--danger); color: white; border-color: var(--danger); }
+.hwa-cancel-edit-button { background: var(--gray-medium); }
+.hwa-cancel-edit-button:hover { background: var(--gray-dark); }
+.hwa-client-status span { padding: 4px 10px; border-radius: 50px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; }
+.hwa-status-completed { background: rgba(16, 185, 129, 0.1); color: var(--success); }
+.hwa-status-pending { background: rgba(245, 158, 11, 0.1); color: var(--warning); }
+
+/* ============================================= */
+/* 8. RESULTS & CHARTS LAYOUT + REORDERING       */
+/* ============================================= */
+/* REVISED: Moving the download button to the end using flexbox order */
+.hwa-results-grid {
+  order: 1; /* Charts appear first */
+}
+.hwa-results-header {
+  order: 2; /* Header with download button appears second (visually last) */
+  margin-top: 20px;
+  padding: 0 10px;
+}
+
+.hwa-results-title { display: flex; align-items: center; gap: 15px; }
+.hwa-results-title h2 { font-size: 2rem; font-weight: 700; color: var(--dark); }
+.hwa-results-icon { color: var(--primary); width: 36px; height: 36px; }
+.hwa-results-grid { display: grid; gap: 30px; grid-template-columns: 1fr; }
+.hwa-chart-card.hwa-full-width { grid-column: 1 / -1; }
+.hwa-chart-container { height: 300px; margin-bottom: 30px; }
+.hwa-radar-container { height: 400px; }
+.hwa-scores-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+.hwa-score-card { background: var(--gradient-light); padding: 15px; border-radius: var(--border-radius); }
+.hwa-score-pattern { font-weight: 600; display: block; margin-bottom: 5px; }
+.hwa-score-value { font-size: 1.4rem; font-weight: 700; color: var(--primary); }
+.hwa-score-bar { height: 6px; background: rgba(1, 90, 149, 0.1); border-radius: 50px; margin-top: 10px; overflow: hidden; }
+.hwa-score-fill { height: 100%; border-radius: 50px; background: #6366F1; }
+.hwa-score-fill.hwa-questionnaire { background: #F56565; }
+.hwa-score-fill.hwa-combined { background: var(--success); }
+.hwa-score-card.hwa-questionnaire .hwa-score-value { color: #F56565; }
+.hwa-score-card.hwa-combined .hwa-score-value { color: var(--success); }
+
+/* ============================================= */
+/* 9. LOADING OVERLAY & PROMPTS                  */
+/* ============================================= */
+.hwa-error-message, .hwa-success-message { padding: 12px; border-radius: var(--border-radius-sm); margin-bottom: 20px; font-weight: 500; text-align: center; }
+.hwa-error-message { background: rgba(239, 68, 68, 0.1); color: var(--danger); border: 1px solid rgba(239, 68, 68, 0.2); }
+.hwa-success-message { background: rgba(16, 185, 129, 0.1); color: var(--success); border: 1px solid rgba(16, 185, 129, 0.2); }
+.hwa-questionnaire-pending, .hwa-questionnaire-completed { text-align: center; }
+.hwa-questionnaire-pending h3, .hwa-questionnaire-completed h3 { font-size: 1.5rem; color: var(--dark); margin-bottom: 10px; }
+.hwa-questionnaire-pending p, .hwa-questionnaire-completed p { font-size: 1.1rem; color: var(--gray-dark); margin-bottom: 20px; }
+.hwa-loading-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(248, 251, 255, 0.8); backdrop-filter: blur(15px); display: flex; align-items: center; justify-content: center; z-index: 9999; }
+.hwa-loading-content { text-align: center; color: var(--primary-dark); }
+.hwa-loading-spinner { width: 60px; height: 60px; border: 5px solid rgba(1, 90, 149, 0.2); border-top-color: var(--primary); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 20px; }
+.hwa-loading-content div { font-size: 1.5rem; font-weight: 600; }
+.hwa-loading-subtitle { font-size: 1rem !important; font-weight: 400 !important; color: var(--gray-dark); margin-top: 10px; }
+
+/* REVISED: Widened prompt takes up 75% of the available space */
+.hwa-select-client-prompt {
+  text-align: center;
+  width: 75%;
+  min-width: 300px; /* Prevents it from getting too small on mobile */
+}
+.hwa-select-client-prompt p {
+  font-size: 1.2rem;
+  color: var(--gray-dark);
+  margin-bottom: 25px;
+}
+
+/* ============================================= */
+/* 10. RESPONSIVE ADJUSTMENTS                    */
+/* ============================================= */
+/* This media query creates the side-by-side view for the two charts on wide screens */
+@media (min-width: 992px) {
+  .hwa-results-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .hwa-dashboard-title { font-size: 2.2rem; }
+  .hwa-dashboard-subtitle { font-size: 1rem; }
+  .hwa-client-actions { flex-direction: row; align-items: center; }
+}
+
+@media (max-width: 576px) {
+  .hwa-dashboard-container { padding: 15px; }
+  .hwa-upload-card, .hwa-questionnaire-card, .hwa-weight-slider-card, .hwa-chart-card, .hwa-client-management-card, .hwa-select-client-prompt { padding: 20px; }
+}
