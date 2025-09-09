@@ -285,7 +285,7 @@ const Home = () => {
           </Link>
           <div className="nav-links">
             <Link to="/" className="nav-link active">Home</Link>
-            <Link to="/about" className="nav-link">About</Link>
+            <Link to="/team" className="nav-link">About</Link>
             <Link to="/contact" className="nav-link">Contact</Link>
             <Link to="/admin-login" className="nav-link">Admin</Link>
             <div className="auth-buttons">
